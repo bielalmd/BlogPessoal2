@@ -1,5 +1,6 @@
 package org.generation.blogPessoal.model;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
@@ -57,7 +58,7 @@ public class UsuarioTest {				//random port define uma porta livre se sua aplica
 		
 		System.out.println(violacao.toString());
 
-		assertTrue(violacao.isEmpty());
+		assertFalse(violacao.isEmpty());
 	}
 
 }
