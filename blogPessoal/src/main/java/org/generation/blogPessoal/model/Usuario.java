@@ -41,6 +41,10 @@ public class Usuario {
 	@JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataNascimento;
 	
+	private String tipo;
+	private String foto;
+
+	
 	@OneToMany (mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
 	private List <Postagem> postagem;
@@ -52,6 +56,8 @@ public class Usuario {
 		this.usuario = usuario;
 		this.senha = senha;
 		this.dataNascimento = dataNascimento;
+		
+		
 	}
 	public Usuario() {} //segundo objeto tem que ser nulo
 
@@ -102,6 +108,18 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 }
