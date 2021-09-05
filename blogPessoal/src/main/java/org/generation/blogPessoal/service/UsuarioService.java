@@ -1,11 +1,9 @@
 package org.generation.blogPessoal.service;
-
 import java.nio.charset.Charset;
 import java.util.Optional;
 import org.apache.commons.codec.binary.Base64;
 import java.time.LocalDate;
 import java.time.Period;
-
 import org.generation.blogPessoal.Repository.UsuarioRepository;
 import org.generation.blogPessoal.model.UserLogin;
 import org.generation.blogPessoal.model.Usuario;
@@ -42,6 +40,7 @@ public class UsuarioService {
 	}
 
 	public Optional<UserLogin> Logar(Optional<UserLogin> user) {
+		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		Optional<Usuario> usuario = usuarioRepository.findByUsuario(user.get().getUsuario());
 
@@ -52,11 +51,13 @@ public class UsuarioService {
 				byte[] encodeAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
 				String authHeader = "Basic " + new String(encodeAuth);
 				
-				user.get().setToken(authHeader);
+				
+				user.get().setId(usuario.get().getId());
 				user.get().setNome(usuario.get().getNome());
 				user.get().setSenha(usuario.get().getSenha());
 				user.get().setTipo(usuario.get().getTipo());
 				user.get().setFoto(usuario.get().getFoto());
+				user.get().setToken(authHeader);
 				
 				
 				return user;
