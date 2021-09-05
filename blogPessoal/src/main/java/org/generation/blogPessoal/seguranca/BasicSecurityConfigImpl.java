@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+
 @EnableWebSecurity
 public class BasicSecurityConfigImpl extends WebSecurityConfigurerAdapter {
 
@@ -38,6 +39,7 @@ public class BasicSecurityConfigImpl extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 		.antMatchers("/usuarios/logar").permitAll() //essa config serva para liberar end point para que o cliente tenha acesso sem precisar passar uma chave em token	
 		.antMatchers("/usuarios/cadastrar").permitAll()
+		.antMatchers("/usuarios/**").permitAll()
 		.anyRequest().authenticated()
 		.and().httpBasic()
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
